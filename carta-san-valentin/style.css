@@ -1,5 +1,4 @@
-/* reset css */
-
+/* Reset CSS */
 * {
   min-width: 0;
   font: inherit;
@@ -21,38 +20,57 @@ svg {
 
 body {
   margin: 0;
-  min-height: 100dvh;
-}
-
-h1,
-h2,
-h3 {
-  text-wrap: balance;
-}
-
-p {
-  text-wrap: pretty;
-}
-
-/* styles */
-/* TODO: Cambiar la fuente
-
-* {
-  font-family: comic-sans;
-} */
-
-body {
+  min-height: 100vh;
+  overflow: hidden;
   background-color: #fad7df;
 }
 
+/* Fondo animado */
+.background {
+  width: 100vw;
+  height: 100vh;
+  background: #fc36a3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.background span {
+  position: absolute;
+  font-size: 2rem; /* Tamaño de los corazones */
+  color: #ff3b3b; /* Color base de los corazones */
+  animation: move 10s linear infinite;
+  opacity: 0.8;
+}
+
+/* Animación de movimiento */
+@keyframes move {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-20vh) translateX(10vw) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(20vh) translateX(-10vw) rotate(360deg);
+    opacity: 0.8;
+  }
+}
+
+/* Estilos de la carta */
 main {
   display: flex;
   flex-direction: column;
-
   gap: 3rem;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 .container-letter {
@@ -65,8 +83,6 @@ main {
   border-right: 200px solid transparent;
   border-top: 100px solid #fe3334;
   border-bottom: 100px solid transparent;
-
-  /*  */
   transition: transform .75s;
   transform-origin: top;
 }
@@ -76,12 +92,10 @@ main {
   padding: 1.5rem;
   line-height: 2rem;
   right: 5px;
-  /*  */
   z-index: -1;
   background: white;
   width: 390px;
   height: 180px;
-
   transition: all .75s;
 }
 
@@ -92,28 +106,30 @@ main {
   border-bottom: 100px solid #ff858a;
 }
 
+/* Botones */
 .options {
   display: flex;
   gap: 5rem;
-
-  & button {
-    color: #ff3234;
-    font-weight: 600;
-    border-radius: 3px;
-    background: #fad7df;
-    padding: 0.5rem 1rem;
-    border: 1px solid #fe3334;
-    cursor: pointer;
-  }
-
-  & button:hover {
-    background: #ff989e;
-    color: white;
-  }
 }
 
+.options button {
+  color: #ff3234;
+  font-weight: 600;
+  border-radius: 3px;
+  background: #fad7df;
+  padding: 0.5rem 1rem;
+  border: 1px solid #fe3334;
+  cursor: pointer;
+}
+
+.options button:hover {
+  background: #ff989e;
+  color: white;
+}
+
+/* Animaciones de la carta */
 .open-cover {
-  transform: rotatex(180deg);
+  transform: rotateX(180deg);
 }
 
 .open-paper {
@@ -142,18 +158,14 @@ main {
   }
 }
 
-
 .heart {
   display: none;
   position: absolute;
   top: 25%;
   left: 46.5%;
-  margin: auto;
   font-size: 3rem;
-
   color: #fe3334;
-
-  animation: crecer 1s forwards ;
+  animation: crecer 1s forwards;
 }
 
 @keyframes crecer {
@@ -164,6 +176,5 @@ main {
   100% {
     scale: 3;
     opacity: 0;
-
   }
 }
